@@ -1,21 +1,23 @@
 {%extends 'base.html'%}
 {%block content%}
-<a href="{{url_for('add_drink')}}">ドリンクの追加</a>
+<a href="{{url_for('app.add_drink')}}">ドリンクの追加</a>
 <div>
-    <h1>ドリンク一覧</h1>
     <table>
         <tr>
             <th>商品名</th>
             <th>削除</th>
+            <th>id</th>
         </tr>
-        {%for drinks in drink%}
+        {%for drink in drinks%}
         <tr>
             <td>{{drink.productName}}</td>
+            <td>{{drink.id}}</td>
             <td>
-                <form method="POST" action="{{url_for('delete_drink')}}">
+                <form method="POST" action="{{url_for('app.delete_drink')}}">
                     {{delete_form.csrf_token}}
                     {{delete_form.id(value=drink.id)}}
-                    {{delte_form.submit()}}
+                    {{delete_form.submit()}}
+                </form>
             </td>
         </tr>
         {%endfor%}
