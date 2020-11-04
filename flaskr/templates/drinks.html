@@ -1,0 +1,24 @@
+{%extends 'base.html'%}
+{%block content%}
+<a href="{{url_for('add_drink')}}">ドリンクの追加</a>
+<div>
+    <h1>ドリンク一覧</h1>
+    <table>
+        <tr>
+            <th>商品名</th>
+            <th>削除</th>
+        </tr>
+        {%for drinks in drink%}
+        <tr>
+            <td>{{drink.productName}}</td>
+            <td>
+                <form method="POST" action="{{url_for('delete_drink')}}">
+                    {{delete_form.csrf_token}}
+                    {{delete_form.id(value=drink.id)}}
+                    {{delte_form.submit()}}
+            </td>
+        </tr>
+        {%endfor%}
+    </table>
+</div>
+{%endblock%}
