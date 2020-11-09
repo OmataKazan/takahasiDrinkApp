@@ -1,0 +1,12 @@
+{%extends 'base.html'%}
+{%block content%}
+<div>
+    <h1>ドリンクを追加する</h1>
+    <form method="POST">
+        {{form.csrf_token}}
+        {{form.drinkname.label}}{{form.drinkname()}}<br>
+        {{form.quantity.label}}{{form.quantity()}}<br>
+        {{form.submit()}}
+    </form>
+</div>
+{%endblock%}
