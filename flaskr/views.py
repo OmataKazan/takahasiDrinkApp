@@ -2,7 +2,7 @@
 from flask import request,render_template,redirect,url_for,flash,Blueprint
 from flaskr import db
 from flaskr.forms import RegisterDrink,DeleteDrink
-from flaskr.models import DrinkList
+from flaskr.models import DrinkList,drink_schema
 
 bp = Blueprint('app', __name__, url_prefix='')
 
@@ -42,3 +42,13 @@ def delete_drink():
         db.session.commit()
         return redirect(url_for('app.drink_list'))
     return redirect(url_for('app.drink_list'))
+
+@bp.route('/api/adddrink',methods=["POST"])
+def api_post():
+    if not "productName" and not "jancode" in request.json:
+      return "error"
+    item = DrinkList(productName=request.json["productName"],jancode=request.json["jancode"])
+    db.session.add(item)
+    db.session.commit()
+    return drink_schema.jsonify(item)
+    
