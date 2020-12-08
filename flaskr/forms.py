@@ -13,8 +13,8 @@ class RegisterDrink(Form):
     quantity = IntegerField(
         '個数:',validators=[DataRequired(),NumberRange(0,12,'0~12以内で入力してください')]
     )
-    submit = SubmitField('登録')
+    submit = SubmitField('追加する')
 
 class DeleteDrink(Form):
     id=HiddenField()
-    submit = SubmitField('削除')
+    submit = SubmitField('Crack')
