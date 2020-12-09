@@ -1,26 +1,41 @@
-{%extends 'base.html'%}
-{%block content%}
-<a href="{{url_for('app.add_drink')}}">ドリンクの追加</a>
-<div>
-    <table>
-        <tr>
-            <th>商品名</th>
-            <th>削除</th>
-            <th>id</th>
-        </tr>
-        {%for drink in drinks%}
-        <tr>
-            <td>{{drink.productName}}</td>
-            <td>{{drink.id}}</td>
-            <td>
-                <form method="POST" action="{{url_for('app.delete_drink')}}">
-                    {{delete_form.csrf_token}}
-                    {{delete_form.id(value=drink.id)}}
-                    {{delete_form.submit()}}
+{%extends 'base.html'%} {%block content%}
+<header class="site-header">
+  <h1 class="site-title">Takahashi Drink App</h1>
+</header>
+
+<div class="drink_list">
+    {%for drink in drinks%}
+        <div class="drink-column">
+            <div class="drink_name_box">
+                <span class="drink_name">
+                    {{drink.productName}}
+                </span>
+            </div>
+            <div class="drink_delete">
+                <form class="delete" method="POST" action="{{url_for('app.delete_drink')}}">
+                    {{delete_form.csrf_token}} {{delete_form.id(value=drink.id)}}
+                    {{delete_form.submit(class_="delete-button")}}
                 </form>
-            </td>
-        </tr>
-        {%endfor%}
-    </table>
+            </div>
+        </div>
+    {%endfor%}
+  <!-- <table>
+    <tr>
+      <th></th>
+      <th></th>
+    </tr>
+    {%for drink in drinks%}
+    <tr>
+      <td class="tdrink_name">{{drink.productName}}</td>
+      <td class="tdrink_button">
+        <form method="POST" action="{{url_for('app.delete_drink')}}">
+          {{delete_form.csrf_token}} {{delete_form.id(value=drink.id)}}
+          {{delete_form.submit()}}
+        </form>
+      </td>
+    </tr>
+    {%endfor%}
+  </table> -->
+  <input class="btn btn--orange btn--circle btn--circle-a btn--shadow" type="button" onclick="location.href='{{url_for('app.add_drink')}}'" value="Add Drink"></button>
 </div>
 {%endblock%}

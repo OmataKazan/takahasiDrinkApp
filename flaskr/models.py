@@ -1,5 +1,5 @@
 #models.py
-from flaskr import db
+from flaskr import db,ma
 from datetime import datetime
 
 class DrinkList(db.Model):
@@ -12,3 +12,9 @@ class DrinkList(db.Model):
     def __init__(self,productName,jancode):
         self.productName=productName
         self.jancode=jancode
+
+class DrinkSchema(ma.Schema):
+    class Meta:
+        fields = ("drink_id","productName","jancode","create_at")
+
+drink_schema = DrinkSchema()

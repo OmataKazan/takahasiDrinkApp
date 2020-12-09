@@ -1,0 +1,152 @@
+@media screen {
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    font-family: "Lato", "Noto Sans JP", "ヒラギノ角ゴ ProN",
+      "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, "ＭＳ Ｐゴシック",
+      "MS PGothic", sans-serif;
+  }
+  .site-header {
+    color: #c60000;
+    margin: 0;
+    padding: 0px;
+    display: flex;
+    height: 80px;
+    width: 100%;
+    align-items: center;
+    position: fixed;
+    z-index: 10;
+    background-color: #fd974f;
+    border-bottom: solid gray;
+  }
+  .site-title {
+    padding: 10px;
+  }
+  .drink_list {
+    /* background-color: brown; */
+    top: 0px;
+    margin: 0px;
+    padding: 80px 0px;
+    white-space: nowrap;
+  }
+  .drink-column {
+    background-color: #fef2e4;
+    height: 50px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border-bottom: solid gray;
+    /* background-color: aqua; */
+  }
+  .drink_name_box {
+    overflow: scroll;
+    vertical-align: top;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    width: 75%;
+    height: 100%;
+  }
+  .drink_name {
+    display: inline;
+    box-sizing: border-box;
+    border: 0 solid black;
+    padding: 0;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+  .drink_delete {
+    vertical-align: top;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    width: 23%;
+    height: 100%;
+  }
+  .delete {
+    height: 100%;
+    width: 100%;
+  }
+  .delete-button {
+    background-color: #867666;
+    color: white;
+    font-size: 20px;
+    border-radius: 10px;
+    height: 100%;
+    width: 100%;
+  }
+  input.btn {
+    font-size: 20px;
+    position: fixed;
+    top: 80%;
+    left: 5%;
+  }
+  input.btn--orange {
+    color: #fff;
+    background-color: #c60000;
+  }
+
+  input.btn--orange:hover {
+    color: #fff;
+    background: #f56500;
+  }
+
+  input.btn--shadow {
+    -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+  }
+
+  input.btn--circle {
+    border-radius: 50%;
+    line-height: 100px;
+    width: 100px;
+    height: 100px;
+    padding: 0;
+  }
+  .add_form {
+    height: 100%;
+    width: 30%;
+    margin: 0 0 0 auto;
+  }
+
+  .add_button {
+    height: 80%;
+    width: 30%;
+    margin: 0 0 0 auto;
+    border-radius: 20px;
+    font-size: 20px;
+    color: white;
+    background-color: #c60000;
+  }
+  .add-form {
+    padding: 80px 0px;
+  }
+  .namelabel {
+    font-size: 20px;
+    padding: 10px 50px;
+  }
+  .quantitylabel {
+    font-size: 20px;
+    padding: 10px 50px;
+  }
+  .formbutton {
+    padding: 15px 60px;
+  }
+  .formbuttons {
+    border-radius: 10px;
+    height: 20px;
+    width: 80%;
+  }
+  .formbuttons.num {
+    width: 20%;
+  }
+}
+@media screen and (min-width: 960px) {
+  /* 960px以上に適用されるCSS（PC用） */
+}

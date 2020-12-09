@@ -1,12 +1,23 @@
-{%extends 'base.html'%}
-{%block content%}
+{%extends 'base.html'%} {%block content%}
+
 <div>
-    <h1>ドリンクを追加する</h1>
-    <form method="POST">
-        {{form.csrf_token}}
-        {{form.drinkname.label}}{{form.drinkname()}}<br>
-        {{form.quantity.label}}{{form.quantity()}}<br>
-        {{form.submit()}}
+  <!-- <header class="site-header">
+    <form class="add_form" method="POST">
+      {{form.submit(class_="add_button")}}
     </form>
+  </header> -->
+    <form method="POST">
+        <header class="site-header">{{form.submit(class_="add_button")}}</header>
+        <div class="add-form">
+      <div class="namelabel">{{form.drinkname.label}}</div>
+      <div class="formbutton">{{form.drinkname(class_="formbuttons")}}</div>
+      <div class="quantitylabel">{{form.quantity.label}}</div>
+      <div class="formbutton">{{form.quantity(class_="formbuttons num")}}</div>
+    </form>
+  </div>
 </div>
 {%endblock%}
+
+<div class="namelabel"></div>
+<div class="quantitylabel"></div>
+<div class="formbutton"></div>
