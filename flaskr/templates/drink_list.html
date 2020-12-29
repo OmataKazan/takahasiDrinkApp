@@ -1,6 +1,7 @@
 {%extends 'base.html'%} {%block content%}
 <header class="site-header">
   <h1 class="site-title">Takahashi Drink App</h1>
+  <a href="{{url_for('app.user_info')}}">{{current_user.username}}</a>
 </header>
 
 <div class="drink_list">

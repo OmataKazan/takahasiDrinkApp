@@ -1,0 +1,6 @@
+{% from "_formhelpers.html" import render_field %}
+{% extends "base.html" %}
+{% block content %}
+<p>ユーザ名:{{current_user.username}}</p>
+<a href="{{url_for('app.logout')}}">ログアウト</a>
+{% endblock %}

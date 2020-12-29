@@ -9,7 +9,7 @@ bp = Blueprint('app', __name__, url_prefix='')
 
 #-----ログイン処理設定----#
 login_manager.login_view = 'app.login'
-
+login_manager.login_message = ''
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(user_id)
@@ -41,6 +41,16 @@ def register():
         return redirect(url_for('app.login'))
     return render_template('register.html',form=form)
 
+@bp.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('app.home'))
+
+@bp.route('/user')
+@login_required
+def user_info():
+    return render_template('user.html')
 #-----ログイン・ログアウト----#
 
 @bp.route('/')
