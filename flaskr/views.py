@@ -2,7 +2,7 @@
 from flask import request,render_template,redirect,url_for,flash,Blueprint
 from flaskr import db,login_manager
 from flaskr.forms import RegisterDrink,DeleteDrink
-from flaskr.models import DrinkList,drink_schema
+from flaskr.models import DrinkList,drink_schema,User
 from flask_login import login_required
 
 bp = Blueprint('app', __name__, url_prefix='')
@@ -22,6 +22,7 @@ def login():
 
 @bp.route('/')
 def home():
+    #--お試しユーザ追加--#
     return render_template('home.html')
 
 @bp.route('/drink_list')
