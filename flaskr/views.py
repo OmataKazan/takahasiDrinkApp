@@ -14,6 +14,8 @@ login_manager.login_view = 'app.login'
 def load_user(user_id):
     return User.query.get(user_id)
 #-----ログイン処理設定----#
+
+#-----ログイン・ログアウト・登録----#
 @bp.route('/login',methods=['GET','POST'])
 def login():
     form = LoginForm(request.form)
@@ -26,6 +28,18 @@ def login():
                 next = url_for('app.drink_list')
             return redirect(next)
     return render_template('login.html',form=form)
+
+@bp.route('/register',methods=['GET','POST'])
+def register():
+    form = RegisterForm(request.form)
+    if request.method=='POST' and form.validate():
+        user = User(
+            username = form.username.data,
+            password = form.password.data
+        )
+        user.add_user()
+        return redirect(url_for('app.login'))
+    return render_template('register.html',form=form)
 
 #-----ログイン・ログアウト----#
 

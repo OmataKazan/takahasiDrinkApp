@@ -4,10 +4,14 @@
 {% for message in get_flashed_messages() %} {# リダイレクトした際のメッセージ#}
 {{ message }}
 {% endfor %}
+ログイン
 <form method="POST">
     {{form.csrf_token}}
     {{render_field(form.username)}}
     {{render_field(form.password)}}
     {{form.submit()}}
 </form>
+
+または
+<a href="{{url_for('app.register')}}">新規登録</a>
 {% endblock %}

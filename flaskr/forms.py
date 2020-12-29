@@ -5,6 +5,7 @@ from wtforms.fields import (
 )
 from wtforms.validators import DataRequired,NumberRange,EqualTo
 from wtforms import ValidationError
+from flaskr.models import User
 
 #-----ログイン・登録管理フォーム----#
 class LoginForm(Form):
