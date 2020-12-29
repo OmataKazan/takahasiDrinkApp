@@ -8,6 +8,7 @@ from wtforms import ValidationError
 from flaskr.models import User
 
 #-----ログイン・登録管理フォーム----#
+#ログイン
 class LoginForm(Form):
     username = StringField(
         'ユーザ名',validators=[DataRequired()]
@@ -17,6 +18,7 @@ class LoginForm(Form):
     )
     submit = SubmitField('ログイン')
 
+#登録
 class RegisterForm(Form):
     username = StringField(
         'ユーザ名',validators=[DataRequired()]
@@ -35,7 +37,8 @@ class RegisterForm(Form):
             raise ValidationError('そのユーザ名は使われています')
 #-----ログイン・ログアウト管理フォーム----#
 
-#-----ドリンクの管理フォーム----#
+#----------ドリンクの管理フォーム---------#
+#追加
 class RegisterDrink(Form):
     drinkname = StringField(
         '名称:',validators=[DataRequired()]
@@ -45,7 +48,8 @@ class RegisterDrink(Form):
     )
     submit = SubmitField('追加する')
 
+#削除
 class DeleteDrink(Form):
     id=HiddenField()
     submit = SubmitField('削除')
-#-----ドリンクの管理フォーム-----#
+#----------ドリンクの管理フォーム----------#

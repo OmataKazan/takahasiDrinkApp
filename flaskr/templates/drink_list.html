@@ -20,23 +20,6 @@
             </div>
         </div>
     {%endfor%}
-  <!-- <table>
-    <tr>
-      <th></th>
-      <th></th>
-    </tr>
-    {%for drink in drinks%}
-    <tr>
-      <td class="tdrink_name">{{drink.productName}}</td>
-      <td class="tdrink_button">
-        <form method="POST" action="{{url_for('app.delete_drink')}}">
-          {{delete_form.csrf_token}} {{delete_form.id(value=drink.id)}}
-          {{delete_form.submit()}}
-        </form>
-      </td>
-    </tr>
-    {%endfor%}
-  </table> -->
   <input class="btn btn--orange btn--circle btn--circle-a btn--shadow" type="button" onclick="location.href='{{url_for('app.add_drink')}}'" value="Add Drink"></button>
 </div>
 {%endblock%}

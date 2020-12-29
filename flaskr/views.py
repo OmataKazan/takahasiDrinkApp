@@ -7,15 +7,24 @@ from flask_login import login_required,login_user,logout_user
 
 bp = Blueprint('app', __name__, url_prefix='')
 
-#-----ログイン処理設定----#
+
+#---------ホームページ---------#
+@bp.route('/')
+def home():
+    return render_template('home.html')
+#---------ホームページ---------#
+
+
+#-----------ログイン処理設定---------#
 login_manager.login_view = 'app.login'
 login_manager.login_message = ''
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(user_id)
-#-----ログイン処理設定----#
+#----------ログイン処理設定----------#
 
-#-----ログイン・ログアウト・登録----#
+
+#----------ログイン・ログアウト・登録----------#
 @bp.route('/login',methods=['GET','POST'])
 def login():
     form = LoginForm(request.form)
@@ -47,16 +56,16 @@ def logout():
     logout_user()
     return redirect(url_for('app.home'))
 
+#ログインしているユーザの情報を表示
 @bp.route('/user')
 @login_required
 def user_info():
     return render_template('user.html')
-#-----ログイン・ログアウト----#
+#-----------ログイン・ログアウト・登録----------#
 
-@bp.route('/')
-def home():
-    return render_template('home.html')
 
+#---------ドリンク関連---------#
+#飲料一覧ページ
 @bp.route('/drink_list')
 @login_required
 def drink_list():
@@ -64,6 +73,7 @@ def drink_list():
     delete_form = DeleteDrink(request.form)
     return render_template('drink_list.html',delete_form=delete_form,drinks=drinks)
 
+#飲料追加ページ
 @bp.route('/add_drink',methods=['GET','POST'])
 def add_drink():
     form = RegisterDrink(request.form)
@@ -78,6 +88,7 @@ def add_drink():
         return redirect(url_for('app.drink_list'))
     return render_template('add_drink.html',form=form)
 
+#飲料削除動作
 @bp.route('/delete_drink',methods=['GET','POST'])
 def delete_drink():
     form = DeleteDrink(request.form)
@@ -90,7 +101,10 @@ def delete_drink():
         db.session.commit()
         return redirect(url_for('app.drink_list'))
     return redirect(url_for('app.drink_list'))
+#---------ドリンク関連---------#
 
+
+#---------API---------#
 @bp.route('/api/adddrink',methods=["POST"])
 def api_post():
     if not "productName" and not "jancode" in request.json:
@@ -99,4 +113,4 @@ def api_post():
     db.session.add(item)
     db.session.commit()
     return drink_schema.jsonify(item)
-    
+#---------API---------#

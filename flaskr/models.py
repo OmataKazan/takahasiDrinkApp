@@ -3,7 +3,8 @@ from flaskr import db,ma
 from datetime import datetime
 from flask_login import UserMixin
 from flask_bcrypt import generate_password_hash,check_password_hash
-#-------ユーザ情報テーブル-------
+
+#-------ユーザ情報テーブル-------#
 class User(UserMixin,db.Model):
     #テーブル定義
     __tablename__ = 'users'
@@ -22,7 +23,7 @@ class User(UserMixin,db.Model):
     def validate_password(self,password):
         return check_password_hash(self.password,password)
 
-    #追加
+    #ユーザ追加
     def add_user(self):
         with db.session.begin(subtransactions=True):
             db.session.add(self)
@@ -32,8 +33,9 @@ class User(UserMixin,db.Model):
     @classmethod
     def select_by_username(cls,username):
         return cls.query.filter_by(username=username).first()
-#-------ユーザ情報テーブル-------
-#-------ドリンク情報を保管するテーブル-------
+#-------ユーザ情報テーブル-------#
+
+#-------ドリンク情報を保管するテーブル-------#
 class DrinkList(db.Model):
     __tablename__ = 'drinkList'
     id = db.Column(db.Integer,primary_key=True)
@@ -48,5 +50,6 @@ class DrinkList(db.Model):
 class DrinkSchema(ma.Schema):
     class Meta:
         fields = ("drink_id","productName","jancode","create_at")
-#-------ドリンク情報を保管するテーブル-------
+#-------ドリンク情報を保管するテーブル-------#
+
 drink_schema = DrinkSchema()
