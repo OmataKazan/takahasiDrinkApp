@@ -1,9 +1,9 @@
 #views.py
 from flask import request,render_template,redirect,url_for,flash,Blueprint
 from flaskr import db,login_manager
-from flaskr.forms import RegisterDrink,DeleteDrink
+from flaskr.forms import RegisterDrink,DeleteDrink,LoginForm,RegisterForm
 from flaskr.models import DrinkList,drink_schema,User
-from flask_login import login_required
+from flask_login import login_required,login_user,logout_user
 
 bp = Blueprint('app', __name__, url_prefix='')
 
@@ -12,17 +12,25 @@ login_manager.login_view = 'app.login'
 
 @login_manager.user_loader
 def load_user(user_id):
-    return User.get(user_id)
+    return User.query.get(user_id)
 #-----ログイン処理設定----#
-@bp.route('/login')
+@bp.route('/login',methods=['GET','POST'])
 def login():
-    return render_template('login.html')
+    form = LoginForm(request.form)
+    if request.method == 'POST' and form.validate():
+        user = User.select_by_username(form.username.data)
+        if user and user.validate_password(form.password.data):
+            login_user(user,remember=True)
+            next = request.args.get('next')
+            if not next:
+                next = url_for('app.drink_list')
+            return redirect(next)
+    return render_template('login.html',form=form)
 
 #-----ログイン・ログアウト----#
 
 @bp.route('/')
 def home():
-    #--お試しユーザ追加--#
     return render_template('home.html')
 
 @bp.route('/drink_list')
