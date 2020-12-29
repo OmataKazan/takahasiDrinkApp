@@ -1,10 +1,15 @@
 #views.py
 from flask import request,render_template,redirect,url_for,flash,Blueprint
-from flaskr import db
+from flaskr import db,login_manager
 from flaskr.forms import RegisterDrink,DeleteDrink
 from flaskr.models import DrinkList,drink_schema
 
 bp = Blueprint('app', __name__, url_prefix='')
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.get(user_id)
+
 
 @bp.route('/')
 def home():

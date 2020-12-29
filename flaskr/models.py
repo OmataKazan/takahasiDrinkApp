@@ -1,7 +1,10 @@
 #models.py
 from flaskr import db,ma
 from datetime import datetime
+#-------ユーザ情報テーブル-------
 
+#-------ユーザ情報テーブル-------
+#-------ドリンク情報を保管するテーブル-------
 class DrinkList(db.Model):
     __tablename__ = 'drinkList'
     id = db.Column(db.Integer,primary_key=True)
@@ -16,5 +19,5 @@ class DrinkList(db.Model):
 class DrinkSchema(ma.Schema):
     class Meta:
         fields = ("drink_id","productName","jancode","create_at")
-
+#-------ドリンク情報を保管するテーブル-------
 drink_schema = DrinkSchema()
